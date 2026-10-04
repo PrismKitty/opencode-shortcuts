@@ -1,0 +1,35 @@
+/**
+ * Namespaces of the commands whose keybinds OpenCode reads from cli.json, taken from https://opencode.ai/v2/cli.json.
+ * Regenerate with pnpm update:namespaces rather than editing by hand
+ */
+export const BUILT_IN_NAMESPACES: ReadonlySet<string> = new Set([
+  'agent',
+  'app',
+  'command',
+  'composer',
+  'dialog',
+  'diff',
+  'docs',
+  'help',
+  'input',
+  'location',
+  'mcp',
+  'messages',
+  'model',
+  'open',
+  'opencode',
+  'pane',
+  'permission',
+  'plugins',
+  'prompt',
+  'provider',
+  'queued_prompt',
+  'server',
+  'service',
+  'session',
+  'stash',
+  'terminal',
+  'theme',
+  'variant',
+  'which-key',
+]);

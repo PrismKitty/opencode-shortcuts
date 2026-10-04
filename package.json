@@ -1,0 +1,72 @@
+{
+  "name": "opencode-shortcuts",
+  "version": "0.1.0",
+  "description": "A keyboard shortcut cheatsheet and rebinder for the OpenCode v1 and v2 TUI",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "opencode-tui",
+    "tui",
+    "keybindings",
+    "keyboard-shortcuts",
+    "shortcuts",
+    "cheatsheet"
+  ],
+  "license": "MIT",
+  "author": "PrismKitty",
+  "repository": "github:PrismKitty/opencode-shortcuts",
+  "homepage": "https://github.com/PrismKitty/opencode-shortcuts#readme",
+  "bugs": "https://github.com/PrismKitty/opencode-shortcuts/issues",
+  "engines": {
+    "opencode": ">=1.15.6"
+  },
+  "type": "module",
+  "exports": {
+    "./tui": "./tui/index.js"
+  },
+  "imports": {
+    "#src/*": "./src/*",
+    "#test/*": "./test/*"
+  },
+  "files": [
+    "tui",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test 'test/**/*.test.ts'",
+    "build": "scripts/build.ts",
+    "dev": "scripts/host/v2/dev.sh",
+    "dev:v1": "scripts/host/v1/dev.sh",
+    "demo": "scripts/record-demo.sh",
+    "update:namespaces": "scripts/host/v2/update-namespaces.ts && prettier --write src/host/v2/generated/built-in-namespaces.ts",
+    "update:v1-keybinds": "scripts/host/v1/update-keybinds.ts && prettier --write src/host/v1/generated/v1-keybinds.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dependencies:check": "depcruise src --config .dependency-cruiser.cjs",
+    "check": "pnpm format:check && pnpm typecheck && pnpm dependencies:check && pnpm test",
+    "prepack": "pnpm check && pnpm build"
+  },
+  "dependencies": {
+    "jsonc-parser": "3.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.28.0",
+    "@babel/preset-typescript": "7.27.1",
+    "@opencode-ai/plugin": "1.18.34",
+    "@opencode/plugin": "2.0.19",
+    "@opencode/theme": "2.0.19",
+    "@opentui/core": "0.5.12",
+    "@opentui/keymap": "0.5.12",
+    "@opentui/solid": "0.5.12",
+    "@types/babel__core": "7.20.5",
+    "@types/node": "24.19.0",
+    "babel-preset-solid": "1.9.12",
+    "dependency-cruiser": "18.4.0",
+    "prettier": "3.9.9",
+    "prettier-plugin-organize-imports": "4.3.0",
+    "solid-js": "1.9.12",
+    "typescript": "6.0.3"
+  }
+}
