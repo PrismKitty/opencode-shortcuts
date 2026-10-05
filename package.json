@@ -46,7 +46,10 @@
     "format:check": "prettier --check .",
     "dependencies:check": "depcruise src --config .dependency-cruiser.cjs",
     "check": "pnpm format:check && pnpm typecheck && pnpm dependencies:check && pnpm test",
-    "prepack": "pnpm check && pnpm build"
+    "prepack": "pnpm check && pnpm build",
+    "release:patch": "npm version patch -m \"Release %s\" && git push --follow-tags",
+    "release:minor": "npm version minor -m \"Release %s\" && git push --follow-tags",
+    "release:major": "npm version major -m \"Release %s\" && git push --follow-tags"
   },
   "dependencies": {
     "jsonc-parser": "3.3.1"

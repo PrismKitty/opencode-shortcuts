@@ -39,6 +39,17 @@ Code outside `ui/` imports from `ui/` only through `ui/index.tsx`. Only `tui.tsx
 
 The npm package needs a build step. OpenCode doesn't compile anything installed from npm, so `pnpm build` compiles `src/` into `tui/` with the same Solid options OpenCode uses for local plugins. It also points every `solid-js` and `@opentui/solid` import at OpenCode's own copies through their `opentui:runtime-module:` ids. Without that, the plugin loads a second Solid runtime and either crashes with "No renderer found" or never repaints ([anomalyco/opencode#39986](https://github.com/anomalyco/opencode/issues/39986)). The build writes `src/tui.tsx` out as `tui/index.js`, because v2 ignores `exports` in `package.json` and loads only a root `tui.*` file or `tui/index.*`. v1 finds the same file through `exports`. `pnpm pack` and `pnpm publish` run the checks and the build first.
 
+## Releasing
+
+Releases go out by hand, inside `nix-shell`, from a clean `main` that matches GitHub.
+
+1. Run the release script for the kind of change. `pnpm release:patch` is for bug fixes, `pnpm release:minor` for new features and `pnpm release:major` for breaking changes. Below 1.0.0, a breaking change is a minor release. The script bumps `package.json`, commits it as "Release 0.2.0", tags it `v0.2.0` and pushes the commit and the tag
+2. Wait for the `check` workflow to pass on GitHub
+3. Run `pnpm publish`. It runs the checks and the build again, then asks for a 2FA code
+4. Run `npm view opencode-shortcuts version` and confirm it prints the new version. npm sometimes holds a release for review for a minute, and shows the old version or a `0.0.0-stage` placeholder until it clears
+
+If `pnpm publish` fails after the push, fix the problem in a new commit, push it and publish again, without bumping the version a second time.
+
 ## The demo
 
 `pnpm demo` re-records `docs/readme/demo.gif`. It drives a scratch OpenCode, loaded with this checkout and with its own config directory, through tmux. It needs OpenCode installed, and `shell.nix` provides the rest.
