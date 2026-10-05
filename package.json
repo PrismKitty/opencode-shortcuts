@@ -1,6 +1,6 @@
 {
   "name": "opencode-shortcuts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A keyboard shortcut cheatsheet and rebinder for the OpenCode v1 and v2 TUI",
   "keywords": [
     "opencode",
