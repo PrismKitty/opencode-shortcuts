@@ -44,7 +44,7 @@ The npm package needs a build step. OpenCode doesn't compile anything installed 
 Releases are published from GitHub Actions and approved by hand. Start inside `nix-shell`, from a clean `main` that matches GitHub.
 
 1. Run the release script for the kind of change. `pnpm release:patch` is for bug fixes, `pnpm release:minor` for new features and `pnpm release:major` for breaking changes. Below 1.0.0, a breaking change is a minor release. The script bumps `package.json`, commits it as "Release 0.2.0", tags it `v0.2.0` and pushes the commit and the tag
-2. The tag starts `.github/workflows/release.yml`, which checks the tag matches `package.json`, runs the checks and the build, and stages the package on npm with `npm stage publish`. npm trusts this workflow through trusted publishing, so no token is stored anywhere
+2. The tag starts `.github/workflows/release.yml`, which checks the tag matches `package.json`, runs the checks and the build, and stages the package on npm with `npm stage publish`. It then creates the GitHub release, listing the commit subjects since the previous tag. npm trusts this workflow through trusted publishing, so no token is stored anywhere
 3. On npmjs.com, open the package's Staged Packages tab and approve the release with a 2FA code
 4. Run `npm view opencode-shortcuts version` and confirm it prints the new version
 
