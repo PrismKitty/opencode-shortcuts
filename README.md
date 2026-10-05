@@ -17,7 +17,7 @@ Press `ctrl+/` to see every key you can use in the screen you're on, including t
 
 Works on OpenCode v2, and on v1 from 1.15.6.
 
-On v2, add the plugin to the `plugins` list in `~/.config/opencode/cli.json`:
+On v2, run `opencode plugin add opencode-shortcuts`, or add the plugin to the `plugins` list in `~/.config/opencode/cli.json` yourself:
 
 ```json
 {
